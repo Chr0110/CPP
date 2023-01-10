@@ -1,7 +1,5 @@
 #include "PhoneBook.hpp"
 #include <iostream>
-#include <iomanip>
-#include <limits>
 
 PhoneBook::PhoneBook()
 : index(0)
@@ -16,26 +14,26 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::set_contact(Contact contact)
 {
-		this->contact[this->index] = contact;
-		this->index = this->index + 1;
-		if (this->index == 8)
-			this->index = 0;
+	this->contact[this->index] = contact;
+	this->index = this->index + 1;
+	if (this->index == 8)
+		this->index = 0;
 }
 
-int PhoneBook::get_size(Contact ct)
+int PhoneBook::get_size(void)
 {
 	int i = 0;
 	while (PhoneBook::contact[i].getfirst_name().size() != 0)
 		i++;
 	return i;
 }
-void PhoneBook::show_contacts(Contact *ct)
+void PhoneBook::show_contacts(void)
 {
 	int i;
-	int index;
-	index = 0;
+	char index;
+	// index = 0;
 	i = 0;
-	this->size = this->get_size((*ct));
+	this->size = this->get_size();
 	std::cout << "┌──────────┬──────────┬──────────┬──────────┐" << std::endl;
 	std::cout << "│" << std::setw(10) << std::right<< "index";
 	std::cout << "│" << std::setw(10) << std::right<< "first name";
@@ -50,22 +48,30 @@ void PhoneBook::show_contacts(Contact *ct)
 		std::cout << "│" << std::setw(10) << std::right<< this->contact[i].getnickname() << "│" << std::endl;
 		i++;
 	}
-	if (this->get_size((*ct)) > 0)
+	if (this->get_size() > 0)
 	{
 		std::cout << "please enter an index of a contact for more details:" << std::endl;
 		std::cin >> index;
-		if (index > this->get_size((*ct)))
+		if (isdigit(index))
 		{
-			std::cout << "that's out of the range we have\n";
+			if (index >= '0' && index <= '8')
+			{
+				int j = index + 48;
+				std::cout << "First name :" << this->contact[j].getfirst_name() << std::endl;
+				std::cout << "Last name :" << this->contact[j].getlast_name() << std::endl;
+				std::cout << "Nickname :" << this->contact[j].getnickname() << std::endl;
+				std::cout << "Phone :" << this->contact[j].getphone() << std::endl;
+				std::cout << "Secret :" << this->contact[j].getsecret() << std::endl;
+			}
+			else
+			{
+				std::cout << "that's out of the range we have\n";
+			}
 		}
 		else
 		{
-			std::cout << "First name :" << this->contact[index].getfirst_name() << std::endl;
-			std::cout << "Last name :" << this->contact[index].getlast_name() << std::endl;
-			std::cout << "Nickname :" << this->contact[index].getnickname() << std::endl;
-			std::cout << "Phone :" << this->contact[index].getphone() << std::endl;
-			std::cout << "Secret :" << this->contact[index].getsecret() << std::endl;
+			std::cout << "input invalid\n";
 		}
 	}
-	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // MORE RESEARCHES PLEASE
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // MORE RESEARCHES PLEASE
 }

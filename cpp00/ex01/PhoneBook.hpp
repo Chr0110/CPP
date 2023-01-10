@@ -15,9 +15,9 @@ class PhoneBook
 	public:
 		PhoneBook();
 		~PhoneBook();
-		void show_contacts(Contact *ct);
+		void show_contacts(void);
 		void set_contact(Contact ct);
 		void set_index();
-		int get_size(Contact ct);
+		int get_size(void);
 };
 #endif

@@ -5,11 +5,7 @@ int main (int ac, char **av)
 {
 	int i = 1;
 	int j = 0;
-	if (ac == 1)
-	{
-		std::cout << "INVALID SORRY";
-	}
-	else
+	if (ac == 2)
 	{
 		while(av[i] != NULL)
 		{
@@ -22,6 +18,8 @@ int main (int ac, char **av)
 			i++;
 		}
 	}
+	else
+		std::cout << "INVALID SORRY";
 	std::cout << "\n";
 	return 0;
 }

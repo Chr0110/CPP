@@ -4,7 +4,7 @@
 
 std::string Contact::getfirst_name()
 {
-	return this->first_name;
+    return this->first_name;
 }
 std::string Contact::getlast_name()
 {

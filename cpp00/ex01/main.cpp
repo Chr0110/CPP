@@ -1,5 +1,6 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+
 void add_to_contact(PhoneBook *pn)
 {
 	Contact ct;
@@ -41,7 +42,7 @@ int main ()
 		}
 		else if (input == "SEARCH")
 		{
-			pn.show_contacts(&ct);
+			pn.show_contacts();
 		}
 		else if (input == "EXIT")
 		{
