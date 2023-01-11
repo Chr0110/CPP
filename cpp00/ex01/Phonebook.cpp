@@ -30,8 +30,8 @@ int PhoneBook::get_size(void)
 void PhoneBook::show_contacts(void)
 {
 	int i;
-	char index;
-	// index = 0;
+	std::string index;
+	// index = 0
 	i = 0;
 	this->size = this->get_size();
 	std::cout << "┌──────────┬──────────┬──────────┬──────────┐" << std::endl;
@@ -52,11 +52,11 @@ void PhoneBook::show_contacts(void)
 	{
 		std::cout << "please enter an index of a contact for more details:" << std::endl;
 		std::cin >> index;
-		if (isdigit(index))
+		if (index.size() == 1 && isdigit(index[0]) && index[0] != '\n')
 		{
-			if (index >= '0' && index <= '8')
+			int j = std::stoi(index);
+			if (j >= 0 && j <= 8 && j < this->size)
 			{
-				int j = index + 48;
 				std::cout << "First name :" << this->contact[j].getfirst_name() << std::endl;
 				std::cout << "Last name :" << this->contact[j].getlast_name() << std::endl;
 				std::cout << "Nickname :" << this->contact[j].getnickname() << std::endl;
