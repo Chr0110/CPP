@@ -8,7 +8,7 @@ OBJ = $(SRC:.cpp=.o)
 
 CC = c++
 
-# FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 
 %.o : %.cpp  Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp \

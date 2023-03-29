@@ -18,7 +18,7 @@ AForm::AForm( AForm const & src ): name(src.name), signe(src.signe), grade_to_si
 
 AForm::~AForm()
 {
-	std::cout << "Distructor called\n";
+	std::cout << "Aform distructor called\n";
 }
 
 AForm &				AForm::operator=( AForm const & rhs )

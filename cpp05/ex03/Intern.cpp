@@ -1,8 +1,5 @@
 #include "Intern.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
 
 Intern::Intern()
 {
@@ -14,18 +11,12 @@ Intern::Intern( const Intern & src )
 }
 
 
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
 
 Intern::~Intern()
 {
 }
 
 
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
 
 Intern &				Intern::operator=( Intern const & rhs )
 {
@@ -34,9 +25,6 @@ Intern &				Intern::operator=( Intern const & rhs )
 	return *this;
 }
 
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
 
 AForm * Intern::makeForm(std::string  name, std::string  target) const
 {
@@ -79,9 +67,4 @@ AForm * Intern::makeForm(std::string  name, std::string  target) const
 	}
 	
 }
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
 
-
-/* ************************************************************************** */

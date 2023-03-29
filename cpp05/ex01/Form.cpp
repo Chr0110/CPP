@@ -1,7 +1,9 @@
 #include "Form.hpp"
 
-Form::Form():name("Form"), signe(false), grade_to_sign(10), grade_to_exec(10) 
+Form::Form():name("Form"), signe(false), grade_to_sign(10), grade_to_exec(10)
 {
+	std::cout << "Defaul Form constructor called\n";
+
 }
 
 Form::Form(std::string const str, int const grade_sign, int const grade_exec):name(str), signe(false), grade_to_sign(grade_sign), grade_to_exec(grade_exec)
@@ -17,17 +19,16 @@ Form::Form( Form const & src ): name(src.name), signe(src.signe), grade_to_sign(
 
 Form::~Form()
 {
-	std::cout << "Distructor called\n";
+	std::cout << "Form distructor called\n";
 }
 
 Form &				Form::operator=( Form const & rhs )
 {
 	if ( this != &rhs )
-	{
 		this->signe = rhs.signe;
-	}
 	return *this;
 }
+
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
 	o << "Name:" << i.get_form_Name() << ", grade to sign " << i.get_sign_grade() << ", grade to execute " << i.get_exec_grade() << " ."<< std::endl; 
@@ -36,12 +37,12 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-	return "!";
+	return "This bureaucrat couldn't sign the Form bcs his grade dosen't fit the standar";
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-	return "!";
+	return "This bureaucrat couldn't sign the Form bcs his grade dosen't fit the standar";
 }
 
 void Form::beSigned(Bureaucrat & br)
@@ -55,6 +56,7 @@ int Form::get_sign_grade() const
 {
 	return this->grade_to_sign;
 }
+
 int Form::get_exec_grade() const
 {
 	return this->grade_to_exec;

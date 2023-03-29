@@ -18,17 +18,16 @@ AForm::AForm( AForm const & src ): name(src.name), signe(src.signe), grade_to_si
 
 AForm::~AForm()
 {
-	std::cout << "Distructor called\n";
+	std::cout << "Aform distructor called\n";
 }
 
 AForm &				AForm::operator=( AForm const & rhs )
 {
 	if ( this != &rhs )
-	{
 		this->signe = rhs.signe;
-	}
 	return *this;
 }
+
 std::ostream &			operator<<( std::ostream & o, AForm const & i )
 {
 	o << "Name:" << i.get_form_Name() << ", grade to sign " << i.get_sign_grade() << ", grade to execute " << i.get_exec_grade() << " ."<< std::endl; 
@@ -37,12 +36,12 @@ std::ostream &			operator<<( std::ostream & o, AForm const & i )
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return "!";
+	return "oops ";
 }
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return "Grade too low ";
+	return "oops ";
 }
 
 const char *AForm::FormNotSigned::what() const throw()

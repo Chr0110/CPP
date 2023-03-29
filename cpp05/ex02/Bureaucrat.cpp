@@ -1,9 +1,8 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat br;
 Bureaucrat::Bureaucrat():name("Mehdi"), grade(1)
 {
-	// std::cout << "Default Bureaucrat constructor\n";
+	std::cout << "Default Bureaucrat constructor\n";
 	return ;
 }
 
@@ -27,9 +26,7 @@ Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 {
 	std::cout << "Assignation opertaor called\n";
 	if ( this != &rhs )
-	{
 		this->grade = rhs.grade;
-	}
 	return *this;
 }
 
@@ -42,18 +39,14 @@ std::ostream &			operator<<( std::ostream & o, Bureaucrat const &i )
 void Bureaucrat::increment_grade()
 {
 	if (getGrade() <= 1)
-	{
 		throw Bureaucrat::GradeTooHighException();
-	}
 	this->grade -= 1;
 }
 
 void Bureaucrat::decrement_grade()
 {
 	if (getGrade() >= 150)
-	{
 		throw Bureaucrat::GradeTooLowException();
-	}
 	this->grade += 1;
 }
 
@@ -88,13 +81,13 @@ int Bureaucrat::signForm(AForm &form)
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << getName() << " couldn't sign the "<< form.get_form_Name() << " bcs his grade dosen't fit the standars\n";
-		return 0;
 	}
+	return 0;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	// std::cout << "Bureaucrat distructor\n";
+	std::cout << "Bureaucrat distructor\n";
 }
 
 void Bureaucrat::executeForm(AForm const & form)
@@ -102,7 +95,6 @@ void Bureaucrat::executeForm(AForm const & form)
 	try
 	{
 		form.execute(*this);
-		//std::cout << this->name <<" execute " << form.get_form_Name() << " . " << std::endl;
 	}
 	catch (const std::exception& e)
 	{

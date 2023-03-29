@@ -1,8 +1,5 @@
 #include "PresidentialPardonForm.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
 
 PresidentialPardonForm::PresidentialPardonForm(): AForm("Form", 75, 45), target("Administration")
 {
@@ -12,19 +9,9 @@ PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & s
 {
 }
 
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
 PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
-
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
 
 PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
@@ -46,6 +33,3 @@ void PresidentialPardonForm::execute(Bureaucrat const & o) const
 		std::cout << this->target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 	}
 }
-
-/* ************************************************************************** */
-

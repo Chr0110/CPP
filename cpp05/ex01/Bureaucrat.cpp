@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat br;
 Bureaucrat::Bureaucrat():name("Mehdi"), grade(1)
 {
 	std::cout << "Default Bureaucrat constructor\n";
@@ -27,9 +26,7 @@ Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 {
 	std::cout << "Assignation opertaor called\n";
 	if ( this != &rhs )
-	{
 		this->grade = rhs.grade;
-	}
 	return *this;
 }
 
@@ -79,15 +76,9 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 void Bureaucrat::signForm(Form &form)
 {
-	try
-	{
-		form.beSigned(*this);
-		std::cout << getName() << " signed " << form.get_form_Name() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << getName() << " couldn't sign the "<< form.get_form_Name() << " bcs his grade dosen't fit the standars\n";
-	}
+	form.beSigned(*this);
+	if (form.getSigne() == true)
+		std::cout << "Form signed from " << this->getName() << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
