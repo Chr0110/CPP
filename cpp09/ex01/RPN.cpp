@@ -27,7 +27,6 @@ Rpn::~Rpn()
 
 void Rpn::fill_map()
 {
-	printf("m here\n");
 	this->result = 0;
 	int i = 0;
 	while (this->input[i])
@@ -75,10 +74,11 @@ void Rpn::error()
 
 int Rpn::issign(char c)
 {
-	if (c == '*' || c == '+' || c == '-' || c == '/')
-		return (1);
-	return (0);
+	if (c != '*' && c != '+' && c != '-' && c != '/')
+		return (0);
+	return (1);
 }
+
 void Rpn::parse_input()
 {
 	int j = 4;
@@ -89,8 +89,7 @@ void Rpn::parse_input()
 		this->error();
 	while (j < i)
 	{
-		printf("m here\n");
-		if (this->input[j] && !this->issign(this->input[j]))
+		if (this->input[j] && this->issign(this->input[j]))
 			j += 4;
 		else
 			this->error();
@@ -98,8 +97,7 @@ void Rpn::parse_input()
 	j = 5;
 	while (j < i)
 	{
-		printf("m here\n");
-		if (this->input[j] && this->input[j] != ' ')
+		if (this->input[j] && this->input[j] == ' ')
 			j += 2;
 		else
 			this->error();
@@ -107,8 +105,7 @@ void Rpn::parse_input()
 	j = 6;
 	while (j < i)
 	{
-		printf("m here\n");
-		if (this->input[j] && !isdigit(this->input[j]))
+		if (this->input[j] && isdigit(this->input[j]))
 			j += 4;
 		else
 			this->error();
