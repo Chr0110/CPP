@@ -6,6 +6,8 @@
 #include <set>
 #include <algorithm>
 #include <chrono>
+#include <ctime>
+#include <sys/time.h>
 
 class PmergeMe
 {
@@ -24,6 +26,7 @@ class PmergeMe
         void set_set(std::string input);
         int get_vec(int i);
         void print_input();
+        void push_input(char **av);
         int size;
 };
 #endif

@@ -1,39 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 00:38:50 by eradi-            #+#    #+#             */
-/*   Updated: 2023/03/26 07:27:30 by eradi-           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef BITCOINEXCHANGE
 #define BITCOINEXCHANGE
 
 #include <iostream>
 #include <map>
-#include <string>
+#include <cstring>
 #include <fstream>
+#include <string>
 
-class Bet
+class Btc
 {
-    private:
-        std::map<int, std::string> b_value;
-		std::string file_name;
-    public:
-		Bet();
-		Bet(std::string name);
-		Bet(const Bet &src);
-		Bet & operator=(Bet const &src);
-		void fill_map();
+	private:
+		std::string date;
+		int value;
+		std::map<std::string, int> map;
+	public:
+		Btc();
+		Btc(const std::string name);
+		Btc(Btc const & src);
+		Btc &		operator=( Btc const & rhs );
+		~Btc();
 		void fill_map(std::string name);
-		int check_date(std::string date);
-		int check_value(double value);
-		std::string create_date(std::string line, char delim);
-		~Bet();
+		void set_values(std::string date, int value);
+		void search_value(std::string name);
+		void error();
 };
 
 #endif

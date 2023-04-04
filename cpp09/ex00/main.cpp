@@ -1,23 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 00:38:53 by eradi-            #+#    #+#             */
-/*   Updated: 2023/03/26 05:44:09 by eradi-           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "BitcoinExchange.hpp"
 
 int main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		av = NULL;
-		Bet bet;
-		return 0;
+		if (!std::strcmp(av[1], "input.txt"))
+			Btc btc;
 	}
+	else
+		std::cout << "Error: could not open file" << std::endl;
+	return (0);
 }

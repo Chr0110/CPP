@@ -89,7 +89,7 @@ void Rpn::parse_input()
 		this->error();
 	while (j < i)
 	{
-		if (this->input[j] && this->issign(this->input[j]))
+		if (this->input[i - 1] && this->issign(this->input[i - 1]))
 			j += 4;
 		else
 			this->error();

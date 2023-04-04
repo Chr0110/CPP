@@ -36,13 +36,28 @@ void PmergeMe::error()
 
 void	PmergeMe::set_vec(std::string input)
 {
-	this->numbers_vec.push_back(std::stoi(input));
-	std::cout <<"hhhhh->" << this->numbers_vec[13] << std::endl;
+	try
+	{
+		this->numbers_vec.push_back(std::stoi(input));
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		this->error();
+	}
 };
 
 void	PmergeMe::set_set(std::string input)
 {
-	this->numbers_set.insert(std::stoi(input));
+	try
+	{
+		this->numbers_set.insert(std::stoi(input));
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		this->error();
+	}
 };
 
 int PmergeMe::get_vec(int i)
@@ -58,17 +73,56 @@ void PmergeMe::parse_input(std::string input)
 			this->error();
 		i++;
 	}
-	this->set_vec(input);
-	this->set_set(input);
 };
+
+void PmergeMe::push_input(char **av)
+{
+	int i = 0;
+	int size = this->numbers_vec.size();
+	if (size > 0)
+	{
+		while(i < size)
+		{
+			this->numbers_vec.pop_back();
+			i++;
+		}
+	}
+	i = 1;
+	while (av[i])
+	{
+		this->set_vec(av[i]);
+		this->set_set(av[i]);
+		i++;
+	}
+}
 
 void PmergeMe::print_input()
 {
 	int i = 0;
-	while (i < this->size)
+	int j = this->size;
+	struct timeval start, end;
+	struct timeval start2, end2;
+    gettimeofday(&start, NULL);
+    std::sort(this->numbers_vec.begin(), this->numbers_vec.end());
+	gettimeofday(&end, NULL);
+	long seconds = end.tv_sec - start.tv_sec;
+    long useconds = end.tv_usec - start.tv_usec;
+    double elapsed = seconds + useconds / 1000000.0;
+	
+	gettimeofday(&start2, NULL);
+    std::set<int> sorted_set(numbers_set.begin(), numbers_set.end());
+	gettimeofday(&end2, NULL);
+	long seconds2 = end2.tv_sec - start2.tv_sec;
+    long useconds2 = end2.tv_usec - start2.tv_usec;
+    double elapsed2 = seconds2 + useconds2 / 1000000.0;
+	if (this->size > 5)
+		j = 5;
+	while (i < j)
 	{
-		//std::cout << this->get_vec(i) << " ";
+		std::cout << this->get_vec(i) << " ";
 		i++;
 	}
 	std::cout << "\n";
+    std::cout << "Time to process a range of " << this->size << " elements with std::[..] : "<< elapsed << "us" << std::endl;
+    std::cout << "Time to process a range of " << this->size << " elements with std::[..] : "<< elapsed2 << "us" << std::endl;
 }
