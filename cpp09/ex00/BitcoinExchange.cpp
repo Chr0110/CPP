@@ -40,7 +40,67 @@ void Btc::error()
 	exit(0);
 };
 
+int Btc::parse_date(std::string date)
+{
+	try
+	{
+		int year = std::stod(date.substr(0,4));
+		int mounth = std::stod(date.substr(5,7));
+		int day = std::stod(date.substr(8,10));
+		if (!(year >= 2009 && year <= 2022))
+			return 1;
+		else if (!(mounth >= 1 && mounth <= 12))
+			return 1;
+		else if (!(day >= 0 && day <= 31))
+			return 1;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return(1);
+	}
+	return (0);
+};
+int Btc::parse_value(long int value)
+{
+	if (value < 0)
+		return 1;
+	else if (value >= 1000)
+		return 2;
+	return 0;
+}
 void Btc::search_value()
+{
+	std::string output;
+	std::string date;
+	long int value;
+	std::ifstream inputFile("input.txt");
+    if (!inputFile.is_open())
+		this->error();
+	while(getline(inputFile, output))
+	{
+		date = output.substr(0, 10);
+		try
+		{
+			value = std::stod(output.substr(13));
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "";
+		}
+		if (this->parse_date(date))
+			std::cout << "Error: bad input => " << date << std::endl;
+		else if (this->parse_value(value) == 1)
+			std::cout << "Error: not a positive number." << std::endl;
+		else if (this->parse_value(value) == 2)
+			std::cout << "Error: too large a number." << std::endl;
+		else
+		{
+			std::cout << date << " => " << value << " = " << this->map.upper_bound(date).operator-- * value << std::endl;
+		}
+	}
+}
+
 void Btc::fill_map(std::string nameee)
 {
 	std::string output;

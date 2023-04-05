@@ -17,7 +17,7 @@ int main (int ac, char **av)
 		i = 1;
 		if (ac > 6)
 		{
-			size = 6; // includes the first argument ./PmergMe
+			size = 6;
 			while(i < size)
 			{
 				std::cout << av[i] << " ";
@@ -33,7 +33,7 @@ int main (int ac, char **av)
 			}
 		}
 		std::cout << "\n";
-		pm.print_input();
+		pm.print_input(av);
 	}
 	return (0);
 }

@@ -21,7 +21,9 @@ class Btc
 		~Btc();
 		void fill_map(std::string name);
 		void set_values(std::string date, int value);
-		void search_value(std::string name);
+		void search_value();
+		int parse_date(std::string date);
+		int parse_value(long int value);
 		void error();
 };
 

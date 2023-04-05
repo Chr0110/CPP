@@ -96,10 +96,61 @@ void PmergeMe::push_input(char **av)
 	}
 }
 
-void PmergeMe::print_input()
+void PmergeMe::swap2(char * &s, char * &s1)
 {
-	int i = 0;
-	int j = this->size;
+	char *tmp;
+	tmp = NULL;
+	tmp = s;
+	s = s1;
+	s1 = tmp;
+};
+
+int PmergeMe::is_sorted(char **av)
+{
+	int i = 1;
+	while(av[i] != NULL)
+	{
+		try
+		{
+			if (std::stoi(av[i]) > std::stoi(av[i + 1]))
+				return 1;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "";
+		}
+		i++;
+	}
+	return 0;
+};
+
+void PmergeMe::swap(char **av)
+{
+	int i;
+	while(this->is_sorted(av))
+	{
+		i = 2;
+		while (av[i])
+		{
+			if (std::stoi(av[i - 1]) > std::stoi(av[i]))
+			{
+				this->swap2(av[i - 1], av[i]);
+			}
+			else
+				i++;
+		}
+	}
+	i = 1;
+	while(av[i])
+	{
+		std::cout << av[i] << " ";
+		i++;
+	}
+	std::cout << std::endl;
+};
+
+void PmergeMe::print_input(char **av)
+{
 	struct timeval start, end;
 	struct timeval start2, end2;
     gettimeofday(&start, NULL);
@@ -115,13 +166,7 @@ void PmergeMe::print_input()
 	long seconds2 = end2.tv_sec - start2.tv_sec;
     long useconds2 = end2.tv_usec - start2.tv_usec;
     double elapsed2 = seconds2 + useconds2 / 1000000.0;
-	if (this->size > 5)
-		j = 5;
-	while (i < j)
-	{
-		std::cout << this->get_vec(i) << " ";
-		i++;
-	}
+	this->swap(av);
 	std::cout << "\n";
     std::cout << "Time to process a range of " << this->size << " elements with std::[..] : "<< elapsed << "us" << std::endl;
     std::cout << "Time to process a range of " << this->size << " elements with std::[..] : "<< elapsed2 << "us" << std::endl;
