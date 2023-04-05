@@ -28,7 +28,7 @@ Btc::~Btc()
 
 };
 
-void Btc::set_values(std::string date, int value)
+void Btc::set_values(std::string date, double value)
 {
 	this->date = date;
 	this->value = value;
@@ -61,7 +61,7 @@ int Btc::parse_date(std::string date)
 	}
 	return (0);
 };
-int Btc::parse_value(long int value)
+int Btc::parse_value(long double value)
 {
 	if (value < 0)
 		return 1;
@@ -71,9 +71,10 @@ int Btc::parse_value(long int value)
 }
 void Btc::search_value()
 {
+	std::map<std::string, double>::iterator it;
 	std::string output;
 	std::string date;
-	long int value;
+	long double value;
 	std::ifstream inputFile("input.txt");
     if (!inputFile.is_open())
 		this->error();
@@ -83,6 +84,7 @@ void Btc::search_value()
 		try
 		{
 			value = std::stod(output.substr(13));
+			std::cout << value << std::endl;
 		}
 		catch(const std::exception& e)
 		{
@@ -96,7 +98,8 @@ void Btc::search_value()
 			std::cout << "Error: too large a number." << std::endl;
 		else
 		{
-			std::cout << date << " => " << value << " = " << this->map.upper_bound(date).operator-- * value << std::endl;
+			it = this->map.lower_bound(date);
+			std::cout  << date << " => " << value << " = " << it->second * value << std::endl;
 		}
 	}
 }
@@ -105,7 +108,7 @@ void Btc::fill_map(std::string nameee)
 {
 	std::string output;
 	std::string date;
-	int value;
+	double value;
 	std::ifstream inputFile(nameee);
     if (!inputFile.is_open())
 		this->error();

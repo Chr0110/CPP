@@ -11,8 +11,8 @@ class Btc
 {
 	private:
 		std::string date;
-		int value;
-		std::map<std::string, int> map;
+		double value;
+		std::map<std::string, double> map;
 	public:
 		Btc();
 		Btc(const std::string name);
@@ -20,10 +20,10 @@ class Btc
 		Btc &		operator=( Btc const & rhs );
 		~Btc();
 		void fill_map(std::string name);
-		void set_values(std::string date, int value);
+		void set_values(std::string date, double value);
 		void search_value();
 		int parse_date(std::string date);
-		int parse_value(long int value);
+		int parse_value(long double value);
 		void error();
 };
 
