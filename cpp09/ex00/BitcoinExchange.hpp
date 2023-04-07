@@ -6,6 +6,7 @@
 #include <cstring>
 #include <fstream>
 #include <string>
+#include <locale>
 
 class Btc
 {
@@ -25,6 +26,10 @@ class Btc
 		int parse_date(std::string date);
 		int parse_value(long double value);
 		void error();
+		int parse_val(std::string val);
+		int comma(std::string str);
+		int isdigit_all(std::string str);
+		int check_signs(std::string val);
 };
 
 #endif
