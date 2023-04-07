@@ -112,7 +112,7 @@ int PmergeMe::is_sorted(char **av)
 	{
 		try
 		{
-			if (std::stoi(av[i]) > std::stoi(av[i + 1]))
+			if (av[i + 1] && std::stoi(av[i]) > std::stoi(av[i + 1]))
 				return 1;
 		}
 		catch(const std::exception& e)
@@ -143,6 +143,11 @@ void PmergeMe::swap(char **av)
 	i = 1;
 	while(av[i])
 	{
+		if (i == 5)
+		{
+			std::cout << "[...]";
+			break;
+		}
 		std::cout << av[i] << " ";
 		i++;
 	}

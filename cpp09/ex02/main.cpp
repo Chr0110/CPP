@@ -7,7 +7,6 @@ int main (int ac, char **av)
 		int i = 1;
 		PmergeMe pm;
 		pm.size = ac - 1;
-		int size = ac - 1;
 		while(av[i])
 		{
 			pm.parse_input(av[i]);
@@ -15,22 +14,15 @@ int main (int ac, char **av)
 		}
 		pm.push_input(av);
 		i = 1;
-		if (ac > 6)
+		while (av[i])
 		{
-			size = 6;
-			while(i < size)
+			if (i == 5)
 			{
-				std::cout << av[i] << " ";
-				i++;
+				std::cout << "[...]";
+				break;
 			}
-		}
-		else if (ac < 6)
-		{
-			while(i <= size)
-			{
-				std::cout << av[i] << " ";
-				i++;
-			}
+			std::cout << av[i] << " " ;
+			i++;
 		}
 		std::cout << "\n";
 		pm.print_input(av);
